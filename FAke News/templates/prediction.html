@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verify News | Truth Guardian</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicons/favicon-16x16.png">
+    <link rel="manifest" href="static/favicons/site.webmanifest">
+    <link rel="mask-icon" href="static/favicons/safari-pinned-tab.svg" color="#DC2626">
+    <meta name="msapplication-TileColor" content="#DC2626">
+    <meta name="theme-color" content="#1a1a1a">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #DC2626;
+            --secondary: #991B1B;
+            --accent: #FDE68A;
+            --background: #1a1a1a;
+            --text: #F3F4F6;
+            --text-secondary: #9CA3AF;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--background);
+            color: var(--text);
+        }
+        
+        .navbar {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--text) !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .verification-section {
+            min-height: calc(100vh - 76px);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .verification-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            padding: 15px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            color: var(--text);
+            box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .btn-verify {
+            background: var(--primary);
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-verify:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .prediction-result {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                </svg>
+                Truth Guardian
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict">Verify News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">How it Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Verification Section -->
+    <section class="verification-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="text-primary mb-2">AI-POWERED NEWS VERIFICATION</h2>
+                    <h1 class="display-4 mb-4">Verify News Headlines</h1>
+                    <p class="text-secondary mb-5">
+                        Our AI-powered system helps you identify potential fake news by analyzing news headlines. 
+                        Simply enter a headline below, and our machine learning model will assess its credibility.
+                    </p>
+                    
+                    <div class="verification-card">
+                        {% if prediction_text %}
+                        <div class="prediction-result" style="background: rgba(220, 38, 38, 0.1);">
+                            {{prediction_text}}
+                        </div>
+                        {% endif %}
+                        
+                        <form action="/predict" method="POST" class="mt-4">
+                            <div class="mb-4">
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="news" 
+                                       name="news" 
+                                       placeholder="Paste your news headline here..."
+                                       required>
+                                <div class="form-text text-secondary mt-2">
+                                    Our AI will analyze the headline and determine its authenticity.
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-verify">
+                                Verify Headline
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2" viewBox="0 0 16 16">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
